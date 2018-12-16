@@ -5,13 +5,14 @@ import './App.css';
 class App extends Component {
   state = {
     data: null,
-    users: []
+    users: [],
+    rentals: []
   };
 
   componentDidMount() {
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
+      .then(res => this.setState({ data: res.express, rentals: res.rentals }))
       .catch(err => console.log(err));
 
     this.fetchUsers()
@@ -23,6 +24,7 @@ class App extends Component {
   callBackendAPI = async () => {
     const response = await fetch('/express_backend');
     const body = await response.json();
+    console.log(body);
 
     if (response.status !== 200) {
       throw Error(body.message);
@@ -60,6 +62,16 @@ class App extends Component {
           <h1>Users</h1>
           {this.state.users.map(user =>
             <div key={user.id}>{user.username}</div>
+          )}
+          <h1>Rentals</h1>
+          {this.state.rentals.map((rental, index) =>
+          <ul key={index}>
+            <li>{rental.source}</li>
+            <li>{rental.title}</li>
+            <li>{rental.price}</li>
+            <li><a target="_blank" rel="noopener noreferrer" href={rental.href}>{rental.href}</a></li>
+            <li>{rental.date}</li>
+          </ul>
           )}
         </header>
       </div>
