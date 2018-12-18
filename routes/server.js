@@ -12,7 +12,7 @@ router.get('/express_backend', (req, mainRes) => {
   rp('https://victoria.craigslist.org/search/apa?availabilityMode=0&max_bedrooms=1&min_bedrooms=1')
     .then(res => {
       let rentalList = $('.rows > li.result-row', res);
-
+      console.log(rentalList.length);
       rentalList.each((i, e) => {
         rentals.push({
           source: 'craigslist',
@@ -33,7 +33,6 @@ router.get('/express_backend', (req, mainRes) => {
     .then(res => {
       // console.log(res);
       let rentalList = $('#recent > li', res);
-      console.log(rentalList.length);
 
       rentalList.each((i, e) => {
         rentals.push({
