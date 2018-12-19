@@ -12,19 +12,22 @@ class App extends Component {
   componentDidMount() {
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
-      .then(res => this.setState({ data: res.express, rentals: res.rentals }))
+      .then(res => this.setState({ data: res.express }))
       .catch(err => console.log(err));
 
     this.fetchUsers()
       .then(res => this.setState({ users: res.users }))
       .catch(err => console.log(err));
+
+    this.fetchListings()
+    .then(res => this.setState({ rentals: res.rentals }))
+    .catch(err => console.log(err));
   }
 
   // Fetches our GET route from the Express server.
   callBackendAPI = async () => {
     const response = await fetch('/express_backend');
     const body = await response.json();
-    console.log(body);
 
     if (response.status !== 200) {
       throw Error(body.message);
@@ -34,6 +37,16 @@ class App extends Component {
 
   fetchUsers = async () => {
     const response = await fetch('/users');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message);
+    }
+    return body;
+  };
+
+  fetchListings = async () => {
+    const response = await fetch('/listings');
     const body = await response.json();
 
     if (response.status !== 200) {

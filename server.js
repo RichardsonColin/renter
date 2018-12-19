@@ -10,6 +10,7 @@ const rp = require('request-promise');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const backendRouter = require('./routes/server');
+const listingRouter = require('./routes/listing.route.js');
 
 const app = express();
 
@@ -23,9 +24,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', indexRouter);
 app.use('/', backendRouter);
 app.use('/users', usersRouter);
+app.use('/listings', listingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
