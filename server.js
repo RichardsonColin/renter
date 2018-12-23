@@ -5,14 +5,22 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const rp = require('request-promise');
+const mongoose = require('mongoose');
 
 // ROUTES
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./routes/user.route');
 const backendRouter = require('./routes/server');
-const listingRouter = require('./routes/listing.route.js');
+const listingRouter = require('./routes/listing.route');
 
 const app = express();
+
+// Set up mongoose connection
+const url = 'mongodb://localhost/test'
+mongoose.connect(url, { useNewUrlParser: true });
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

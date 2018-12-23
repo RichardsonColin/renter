@@ -3,6 +3,18 @@ const $ = require('cheerio');
 
 const listing = require('../models/listing.model');
 
+exports.listingCreate = function(req, res) {
+  
+}
+
+/* 
+  Make a post req for user in user controller to modify preferences when a form
+  is set up client side.
+
+  Then use the user preferences to customize the web scraping and do the necessary 
+  insert or update.
+*/
+
 exports.test = function(req, mainRes, next) {
   const rentals = [];
   // rp test
