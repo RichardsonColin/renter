@@ -2,8 +2,8 @@ const rp = require('request-promise');
 const $ = require('cheerio');
 const crypto = require('crypto');
 
-const Listing = require('../models/listing.model');
-const User = require('../models/user.model');
+const Listing = require('../models/listing');
+const User = require('../models/user');
 
 // console.log(user);
 
