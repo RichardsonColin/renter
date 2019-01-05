@@ -5,7 +5,7 @@ const userController = require('../controllers/user');
 
 router.get('/:username', userController.getOne);
 
-/* GET users listing. */
+/* GET users. */
 router.get('/', function(req, res, next) {
   res.send({ users:
     [{
