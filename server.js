@@ -6,12 +6,13 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const rp = require('request-promise');
 const mongoose = require('mongoose');
+// const schedule = require('node-schedule');
 
 // ROUTES
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/user.route');
+const usersRouter = require('./routes/user');
 const backendRouter = require('./routes/server');
-const listingRouter = require('./routes/listing.route');
+const listingRouter = require('./routes/listing');
 
 const app = express();
 
@@ -25,6 +26,9 @@ db.on('error', console.error.bind(console, 'connection error:'));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// scheduler
+const test = require('./lib/schedules/schedules');
 
 app.use(logger('dev'));
 app.use(express.json());
