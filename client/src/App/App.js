@@ -56,6 +56,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.rentals.length);
     return (
       <div className="App">
         <header className="App-header">
@@ -79,10 +80,10 @@ class App extends Component {
           <h1>Rentals</h1>
           {this.state.rentals.map((rental, index) =>
           <ul key={index}>
-            <li>{rental.source}</li>
+            <li>{rental.meta.source}</li>
             <li>{rental.title}</li>
-            <li>{rental.price}</li>
-            <li><a target="_blank" rel="noopener noreferrer" href={rental.href}>{rental.href}</a></li>
+            <li>${rental.price}</li>
+            <li><a target="_blank" rel="noopener noreferrer" href={rental.meta.href}>{rental.meta.href}</a></li>
             <li>{rental.date}</li>
           </ul>
           )}
