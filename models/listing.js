@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 // TODO: add id as hash of title
 let ListingSchema = new Schema({
+  city_id: {
+    type: Schema.Types.ObjectId
+  },
   hrefToHash: {
     type: String,
     required: true
