@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const rp = require('request-promise');
 const mongoose = require('mongoose');
-// const schedule = require('node-schedule');
 
 // ROUTES
 const indexRouter = require('./routes/index');
@@ -28,7 +27,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // scheduler
-const test = require('./lib/schedules/schedules');
+const schedules = require('./lib/schedules/schedules');
 
 app.use(logger('dev'));
 app.use(express.json());
